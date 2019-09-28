@@ -9,10 +9,10 @@ pipeline {
             }
         }
         stage ("Mvn Build") {
-            agent { label 'Java' }
+            agent { label 'slave' }
             tools {
-                maven 'maven-3.6.2'
-                jdk "JDK1.8"
+                maven 'Maven 3.6.2'
+                jdk "JDK 1.8"
             }
             steps {
                 sh "mvn package"
@@ -31,7 +31,7 @@ pipeline {
         }
         stage ("Check the webpage") {
             steps {
-                sh "curl http://192.168.213.102:90/mvn-hello-world"
+                sh "curl http://192.168.122.166:90/mvn-hello-world"
             }
         }
     }
