@@ -3,13 +3,13 @@ pipeline {
     agent none 
     stages { 
         stage ("SCM Checkin-1") {
-            agent { label 'Java' }
+            agent { label 'slave1' }
             steps {
                 git branch: 'master', url: 'https://github.com/c5232936/SampleMaven'
             }
         }
         stage ("Mvn Build") {
-            agent { label 'slave' }
+            agent { label 'slave1' }
             tools {
                 maven 'Maven 3.6.2'
                 jdk "JDK 1.8"
