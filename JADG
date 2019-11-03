@@ -1,0 +1,36 @@
+pipeline {
+    agent { label 'Java' }
+    stages { 
+        stage ("Build with Ansible") {
+            steps {
+                sh "ansible-playbook Install-Depen01.yml"
+            }
+        }
+        stage ("SCM Checkin-1") {
+            steps {
+                sh "mkdir samplemaven"
+                dir("samplemaven") {
+                    git branch: 'B1', url: 'https://github.com/Vishwanathms/SampleMaven'
+                } 
+                sh "mkdir JADG"
+                dir("JADG") {
+                   git branch: 'master', url: 'https://github.com/Vishwanathms/Jen-Ansi-Doc-GIT'
+                }
+            }
+        }
+        stage ("maven build") {
+            tools {
+                maven 'maven-3.6.2'
+                jdk 'JDK1.8'
+            }
+            steps {
+                dir("samplemaven") {
+                    sh "mvn package"
+                }
+            }
+	    input {
+                 message 'Mvn Package is Successfull, I can Proceed'
+            }
+        }
+    }
+}
