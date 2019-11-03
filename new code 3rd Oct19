@@ -1,0 +1,10 @@
+ 
+node {
+    stage("SCM Checkout-DEv1"){
+        git 'https://github.com/c5232936/sampleMaven/new/branch-Jira'
+    }
+    stage("Execute Java script"){
+        sh 'javac *.java'
+        sh 'java Simple'
+    }
+}
