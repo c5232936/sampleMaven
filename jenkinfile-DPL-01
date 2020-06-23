@@ -28,7 +28,7 @@ pipeline {
         stage ("Check the webpage") {
             steps {
                 sh "sleep 15"
-                sh "curl http://192.168.122.166:90"
+                sh "curl http://192.168.65.155:90"
             }
         }
         stage ("Push to Docker HUB") {
