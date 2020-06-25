@@ -1,6 +1,6 @@
-FROM tomcat:8
+FROM tomcat:7
 # Take the war and copy to webapps of tomcat
 COPY target/*.war /usr/local/tomcat/webapps/
 
-EXPOSE 8080
+EXPOSE 8090
 
