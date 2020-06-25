@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'slave1' }
+    agent { label 'master' }
     stages { 
         stage ("SCM Checkin-1") {
             steps {
@@ -28,7 +28,7 @@ pipeline {
         stage ("Check the webpage") {
             steps {
                 sh "sleep 15"
-                sh "curl http://192.168.65.155:90"
+                sh "curl http://192.168.65.157:8090"
             }
         }
         stage ("Push to Docker HUB") {
