@@ -3,13 +3,13 @@ pipeline {
     agent none 
     stages { 
         stage ("SCM Checkin-1") {
-            agent { label 'slave1' }
+            agent { label 'master' }
             steps {
                 git branch: 'master', url: 'https://github.com/c5232936/SampleMaven'
             }
         }
         stage ("Mvn Build") {
-            agent { label 'slave1' }
+            agent { label 'master' }
             tools {
                 maven 'Maven 3.6.2'
                 jdk "JDK 1.8"
@@ -31,7 +31,7 @@ pipeline {
         }
         stage ("Check the webpage") {
             steps {
-                sh "curl http://192.168.122.166:90/mvn-hello-world"
+                sh "curl http://192.168.65.157:8090/mvn-hello-world"
             }
         }
     }
